@@ -32,12 +32,12 @@ PRの本文には、以下のテンプレートを使用してください。
 # 確認項目
 - [ ] [変数名や関数名に情報が詰め込まれている](https://qiita.com/fkrw/items/7646563a2b238fbcff9a#%EF%BC%92%E7%AB%A0%E5%90%8D%E5%89%8D%E3%81%AB%E6%83%85%E5%A0%B1%E3%82%92%E8%A9%B0%E3%82%81%E8%BE%BC%E3%82%80)
 - [ ] [誤解を招く単語を変数名や関数名に使用していない](https://wayasblog.com/readable-code/#toc4)
-- [ ] [必要なコメントを書いているか](https://wayasblog.com/readable-code/#toc6)
-- [ ] [正確で簡潔なコメントを書いているか](https://wayasblog.com/readable-code/#toc7)
-- [ ] [読みやすい制御フローを書いているか](https://wayasblog.com/readable-code/#toc9)
-- [ ] [不要な変数を宣言していないか](https://wayasblog.com/readable-code/#toc11)
-- [ ] [汎用コードをモジュール化出来ているか](https://wayasblog.com/readable-code/#toc11)
-- [ ] [一度に一つのことを行っているか](https://wayasblog.com/readable-code/#toc14)
+- [ ] [必要なコメントを書いている](https://wayasblog.com/readable-code/#toc6)
+- [ ] [正確で簡潔なコメントを書いている](https://wayasblog.com/readable-code/#toc7)
+- [ ] [読みやすい制御フローを書いている](https://wayasblog.com/readable-code/#toc9)
+- [ ] [不要な変数を宣言していない](https://wayasblog.com/readable-code/#toc11)
+- [ ] [汎用コードをモジュール化出来ている](https://wayasblog.com/readable-code/#toc11)
+- [ ] [一度に一つのことを行っている](https://wayasblog.com/readable-code/#toc14)
 ```
 
 ## 利用可能なスクリプト
