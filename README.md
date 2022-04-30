@@ -1,46 +1,74 @@
-# Getting Started with Create React App
+# Hazy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+このプロジェクトは、[Create React App](https://github.com/facebook/create-react-app)でブートストラップしています。
 
-## Available Scripts
+## 開発について
+GitHubのワークフローは[Github Flow](https://atmarkit.itmedia.co.jp/ait/articles/1708/01/news015.html)を採用しています。
 
-In the project directory, you can run:
+基本的にブランチとissueは、1対1に対応付けて作成してください。
+
+ブランチ名の命名規則ですが、`feature`ブランチの場合は`feature/issue番号_このブランチで実装する内容の説明`のフォーマットで作成してください。
+
+例えば、issue番号が`12`で、ログインページを実装する場合は、`feature/12_implementLoginPage`といった具合です。
+
+`master`ブランチ, `develop`ブランチへの直接の`push`は避けて`PR`を作成するようにしてください。
+
+PR名は`issue名 #issue番号`としてください。
+
+Reviwerには全ての開発メンバーを選択して、全員からの`Approve`後に`Merge`します。
+
+PRの本文には、以下のテンプレートを使用してください。
+
+```md
+# 関連issue/PR
+- 
+
+# PRでやったこと
+- 
+
+# 設計記事/関連情報(slack, 議事録など)
+- 
+
+# 確認項目
+- [ ] [変数名や関数名に情報が詰め込まれている](https://qiita.com/fkrw/items/7646563a2b238fbcff9a#%EF%BC%92%E7%AB%A0%E5%90%8D%E5%89%8D%E3%81%AB%E6%83%85%E5%A0%B1%E3%82%92%E8%A9%B0%E3%82%81%E8%BE%BC%E3%82%80)
+- [ ] [誤解を招く単語を変数名や関数名に使用していない](https://wayasblog.com/readable-code/#toc4)
+- [ ] [必要なコメントを書いているか](https://wayasblog.com/readable-code/#toc6)
+- [ ] [正確で簡潔なコメントを書いているか](https://wayasblog.com/readable-code/#toc7)
+- [ ] [読みやすい制御フローを書いているか](https://wayasblog.com/readable-code/#toc9)
+- [ ] [不要な変数を宣言していないか](https://wayasblog.com/readable-code/#toc11)
+- [ ] [汎用コードをモジュール化出来ているか](https://wayasblog.com/readable-code/#toc11)
+- [ ] [一度に一つのことを行っているか](https://wayasblog.com/readable-code/#toc14)
+```
+
+## 利用可能なスクリプト
+
+プロジェクトディレクトリで、実行することができます。
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+開発モードでアプリを実行します。
+[http://localhost:3000](http://localhost:3000) を開くと、ブラウザで表示されます。
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+編集を行うとページが再読み込みされます。
+また、lintエラーが発生した場合はコンソールに表示されます。
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+テストランナーを対話型ウォッチモードで起動します。
+詳しくは[テストの実行](https://facebook.github.io/create-react-app/docs/running-tests)の項を参照してください。
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+本番用のアプリを `build` フォルダにビルドします。
+本番モードでReactを正しくバンドルし、最高のパフォーマンスが得られるようにビルドを最適化します。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ビルドはminifyされ、ファイル名にはハッシュが含まれます。
+アプリをデプロイする準備ができました!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+詳細は[deployment](https://facebook.github.io/create-react-app/docs/deployment)のセクションを参照してください。
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)でさらに詳しく学ぶことができます。
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Reactを学ぶには、[React documentation](https://reactjs.org/)をチェックしてください。
