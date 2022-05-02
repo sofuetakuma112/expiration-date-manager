@@ -23,9 +23,7 @@ const schema = yup.object({
     .string()
     .required('このフィールドは必須項目です')
     .email('正しいメールアドレス入力してください'),
-  name: yup
-    .string()
-    .required('このフィールドは必須項目です'),
+  name: yup.string().required('このフィールドは必須項目です'),
   password: yup
     .string()
     .required('このフィールドは必須項目です')
@@ -52,53 +50,51 @@ function App() {
   };
 
   return (
-    <>
-      <Container
-        maxWidth="sm"
-        sx={{
-          pt: 5,
-          'align-items': 'center',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <Stack spacing={3} sx={{ flex: 1 }}>
-          <h1>アカウント作成</h1>
-          <StyledFormLabel>メールアドレス</StyledFormLabel>
-          <TextField
-            required
-            type="email"
-            {...register('email')}
-            error={'email' in errors}
-            helperText={errors.email?.message}
-          />
-          <StyledFormLabel>ユーザー名</StyledFormLabel>
-          <TextField
-            required
-            {...register('name')}
-            error={'name' in errors}
-            helperText={errors.name?.message}
-          />
-          <StyledFormLabel>パスワード</StyledFormLabel>
-          <TextField
-            required
-            type="password"
-            {...register('password')}
-            error={'password' in errors}
-            helperText={errors.password?.message}
-          />
-          <Button
-            color="primary"
-            variant="contained"
-            size="large"
-            onClick={handleSubmit(onSubmit)}
-          >
-            作成
-          </Button>
-        </Stack>
-      </Container>
-    </>
+    <Container
+      maxWidth="sm"
+      sx={{
+        pt: 5,
+        'align-items': 'center',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
+      <Stack spacing={3} sx={{ flex: 1 }}>
+        <h1>アカウント作成</h1>
+        <StyledFormLabel>メールアドレス</StyledFormLabel>
+        <TextField
+          required
+          type="email"
+          {...register('email')}
+          error={'email' in errors}
+          helperText={errors.email?.message}
+        />
+        <StyledFormLabel>ユーザー名</StyledFormLabel>
+        <TextField
+          required
+          {...register('name')}
+          error={'name' in errors}
+          helperText={errors.name?.message}
+        />
+        <StyledFormLabel>パスワード</StyledFormLabel>
+        <TextField
+          required
+          type="password"
+          {...register('password')}
+          error={'password' in errors}
+          helperText={errors.password?.message}
+        />
+        <Button
+          color="primary"
+          variant="contained"
+          size="large"
+          onClick={handleSubmit(onSubmit)}
+        >
+          作成
+        </Button>
+      </Stack>
+    </Container>
   );
 }
 
