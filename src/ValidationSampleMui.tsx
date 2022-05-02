@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { styled } from '@mui/system'; 
 
-const StyledTextField = styled("p")({
+const StyledFormLabel = styled("label")({
     margin: '0px',
   });
 
@@ -57,7 +57,7 @@ function ValidationSampleMui() {
       >
       <Stack spacing={3} sx={{ flex: 1 }}>
           <h1>アカウント作成</h1>
-      <StyledTextField>メールアドレス</StyledTextField>
+      <StyledFormLabel>メールアドレス</StyledFormLabel>
         <TextField
           required
           type="email"
@@ -65,14 +65,14 @@ function ValidationSampleMui() {
           error={'email' in errors}
           helperText={errors.email?.message}
         />
-        <StyledTextField>ユーザー名</StyledTextField>
+        <StyledFormLabel>ユーザー名</StyledFormLabel>
         <TextField
           required
           {...register('name')}
           error={'name' in errors}
           helperText={errors.name?.message}
         />
-        <StyledTextField>パスワード</StyledTextField>
+        <StyledFormLabel>パスワード</StyledFormLabel>
         <TextField
           required
           type="password"
