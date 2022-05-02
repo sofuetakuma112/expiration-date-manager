@@ -3,14 +3,14 @@ import { Button, Container, Stack, TextField } from '@mui/material';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { styled } from '@mui/system'; 
+import { styled } from '@mui/system';
 
-const StyledFormLabel = styled("label")({
-    margin: '0px',
-  });
+const StyledFormLabel = styled('label')({
+  margin: '0px',
+});
 
 // フォームの型
-interface SampleFormInput {
+interface FormInput {
   email: string;
   name: string;
   password: string;
@@ -24,9 +24,8 @@ const schema = yup.object({
     .required('このフィールドは必須項目です')
     .email('正しいメールアドレス入力してください'),
   name: yup
-  .string()
-  .required('このフィールドは必須項目です')
-  .min(6, '6文字以上入力してください'),
+    .string()
+    .required('このフィールドは必須項目です'),
   password: yup
     .string()
     .required('このフィールドは必須項目です')
@@ -42,58 +41,64 @@ function App() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SampleFormInput>({
+  } = useForm<FormInput>({
     resolver: yupResolver(schema),
   });
 
   // フォーム送信時の処理
-  const onSubmit: SubmitHandler<SampleFormInput> = (data) => {
+  const onSubmit: SubmitHandler<FormInput> = (data) => {
     // バリデーションチェックOK！なときに行う処理を追加
     console.log(data);
   };
 
   return (
-      <>
+    <>
       <Container
-      maxWidth="sm"
-      sx={{ pt: 5, 'align-items': 'center', height: "100%", display: "flex", alignItems: "center"}}
+        maxWidth="sm"
+        sx={{
+          pt: 5,
+          'align-items': 'center',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+        }}
       >
-      <Stack spacing={3} sx={{ flex: 1 }}>
+        <Stack spacing={3} sx={{ flex: 1 }}>
           <h1>アカウント作成</h1>
-      <StyledFormLabel>メールアドレス</StyledFormLabel>
-        <TextField
-          required
-          type="email"
-          {...register('email')}
-          error={'email' in errors}
-          helperText={errors.email?.message}
-        />
-        <StyledFormLabel>ユーザー名</StyledFormLabel>
-        <TextField
-          required
-          {...register('name')}
-          error={'name' in errors}
-          helperText={errors.name?.message}
-        />
-        <StyledFormLabel>パスワード</StyledFormLabel>
-        <TextField
-          required
-          type="password"
-          {...register('password')}
-          error={'password' in errors}
-          helperText={errors.password?.message}
-        />
-        <Button
-          color="primary"
-          variant="contained"
-          size="large"
-          onClick={handleSubmit(onSubmit)}
-        >
-          作成
-        </Button>
-      </Stack>
-    </Container>
-      </>
+          <StyledFormLabel>メールアドレス</StyledFormLabel>
+          <TextField
+            required
+            type="email"
+            {...register('email')}
+            error={'email' in errors}
+            helperText={errors.email?.message}
+          />
+          <StyledFormLabel>ユーザー名</StyledFormLabel>
+          <TextField
+            required
+            {...register('name')}
+            error={'name' in errors}
+            helperText={errors.name?.message}
+          />
+          <StyledFormLabel>パスワード</StyledFormLabel>
+          <TextField
+            required
+            type="password"
+            {...register('password')}
+            error={'password' in errors}
+            helperText={errors.password?.message}
+          />
+          <Button
+            color="primary"
+            variant="contained"
+            size="large"
+            onClick={handleSubmit(onSubmit)}
+          >
+            作成
+          </Button>
+        </Stack>
+      </Container>
+    </>
   );
 }
 
