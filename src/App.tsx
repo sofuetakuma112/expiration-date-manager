@@ -1,47 +1,100 @@
-import * as React from 'react';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Container, Stack, TextField } from '@mui/material';
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import * as yup from 'yup';
 import { styled } from '@mui/system'; 
 
-// styledは、emotion や styled-components の styled() ユーティリティの代わりとして使用することができます
-const StyledTextField = styled(TextField)({
-  backgroundColor: 'white',
+const StyledFormLabel = styled("label")({
+    margin: '0px',
+  });
+
+// フォームの型
+interface SampleFormInput {
+  email: string;
+  name: string;
+  password: string;
+}
+
+// バリデーションルール
+// バリデーションスキーマを構築する
+const schema = yup.object({
+  email: yup
+    .string()
+    .required('このフィールドは必須項目です')
+    .email('正しいメールアドレス入力してください'),
+  name: yup
+  .string()
+  .required('このフィールドは必須項目です')
+  .min(6, '6文字以上入力してください'),
+  password: yup
+    .string()
+    .required('このフィールドは必須項目です')
+    .min(6, 'パスワードは6文字以上で入力してください')
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&].*$/,
+      'パスワードは英数字と記号を組み合わせて下さい'
+    ),
 });
 
-const StyledTitle = styled("h1")({
-  width: "100%",
-  'text-align': 'center'
-})
+function App() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SampleFormInput>({
+    resolver: yupResolver(schema),
+  });
 
-export default function App() {
+  // フォーム送信時の処理
+  const onSubmit: SubmitHandler<SampleFormInput> = (data) => {
+    // バリデーションチェックOK！なときに行う処理を追加
+    console.log(data);
+  };
 
   return (
-    <Container maxWidth="sm" sx={{ backgroundColor: '#EEEEEE', border: '1px solid black', width: 500,}}>
-      <StyledTitle>アカウント作成</StyledTitle>
-      <Box
-        sx={{
-          maxWidth: '100%'
-        }}
+      <>
+      <Container
+      maxWidth="sm"
+      sx={{ pt: 5, 'align-items': 'center', height: "100%", display: "flex", alignItems: "center"}}
       >
-        <p>メールアドレス</p>
-        <StyledTextField fullWidth id="fullWidth" />
-        <p>ユーザー名</p>
-        <StyledTextField fullWidth id="fullWidth" />
-        <p>パスワード</p>
-        <StyledTextField fullWidth id="fullWidth" />
+      <Stack spacing={3} sx={{ flex: 1 }}>
+          <h1>アカウント作成</h1>
+      <StyledFormLabel>メールアドレス</StyledFormLabel>
+        <TextField
+          required
+          type="email"
+          {...register('email')}
+          error={'email' in errors}
+          helperText={errors.email?.message}
+        />
+        <StyledFormLabel>ユーザー名</StyledFormLabel>
+        <TextField
+          required
+          {...register('name')}
+          error={'name' in errors}
+          helperText={errors.name?.message}
+        />
+        <StyledFormLabel>パスワード</StyledFormLabel>
+        <TextField
+          required
+          type="password"
+          {...register('password')}
+          error={'password' in errors}
+          helperText={errors.password?.message}
+        />
         <Button
-          variant="contained"
-          fullWidth
           color="primary"
-          sx={{ 
-            'margin-top': '20px',
-        }}
+          variant="contained"
+          size="large"
+          onClick={handleSubmit(onSubmit)}
         >
-          はい
+          作成
         </Button>
-      </Box>
+      </Stack>
     </Container>
+      </>
+  );
+}
 
-  )};
+export default App;
