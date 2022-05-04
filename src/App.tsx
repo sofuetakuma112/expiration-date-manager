@@ -54,7 +54,6 @@ function App() {
       maxWidth="sm"
       sx={{
         pt: 5,
-        'align-items': 'center',
         height: '100%',
         display: 'flex',
         alignItems: 'center',
@@ -70,7 +69,7 @@ function App() {
           error={'email' in errors}
           helperText={errors.email?.message}
         />
-        <StyledFormLabel>ユーザー名</StyledFormLabel>
+        <StyledFormLabel>ユーザーID</StyledFormLabel>
         <TextField
           required
           {...register('name')}
