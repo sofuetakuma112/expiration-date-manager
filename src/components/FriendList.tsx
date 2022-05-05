@@ -10,26 +10,24 @@ import Box  from '@mui/material/Box';
 function FriendList() {
   return (
     <Box sx={{ maxWidth: '300px' }}>
-      <p>友達の人数:8人</p>
+      <ListItemText>友達の人数:8人</ListItemText>
       <List
         dense
         sx={{
-          width: '100%',
-          maxWidth: 360,
-          height: '300px',
+          height: '870px',
           'overflowY': 'scroll',
+          'overflowX': 'hidden',
         }}
       >
-        {[0, 1, 2, 3,].map((value) => {
-          const labelId = `checkbox-list-secondary-label-${value}`;
+        {[0, 1, 2, 3].map((value) => {
           return (
-            <ListItem key={value} disablePadding>
+            <ListItem key={value} disablePadding sx={{margin: '5px'}}>
               <ListItemButton sx={{padding: '0', marginBottom: '10px'}}>
                 <ListItemAvatar>
                   <Avatar alt={`Avatar n°${value + 1}`} />
                 </ListItemAvatar>
-                <ListItemText id={labelId} primary={`name`} />
-                <ListItemText id={labelId} primary={`～～してます`} />
+                <ListItemText primary={`name`} />
+                <ListItemText primary={`～～してます`} />
               </ListItemButton>
             </ListItem>
           );
