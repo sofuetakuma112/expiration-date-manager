@@ -5,12 +5,13 @@ import { ThemeProvider } from '@mui/material/styles';
 import App from './App';
 import theme from './theme';
 import FriendList from './components/FriendList';
+import EditProfile from './components/EditProfile';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
-    <FriendList />
+    <EditProfile />
   </ThemeProvider>,
   document.querySelector('#root')
 );
