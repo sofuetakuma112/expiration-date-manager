@@ -10,9 +10,7 @@ const StyledFormLabel = styled('label')({
 
 // フォームの型
 interface FormInput {
-  email: string;
   name: string;
-  password: string;
   condition: string;
   id: string;
 }
@@ -20,20 +18,8 @@ interface FormInput {
 // バリデーションルール
 // バリデーションスキーマを構築する
 const schema = yup.object({
-  email: yup
-    .string()
-    .required('このフィールドは必須項目です')
-    .email('正しいメールアドレス入力してください'),
   id: yup.string().required('このフィールドは必須項目です'),
   name: yup.string().required('このフィールドは必須項目です'),
-  password: yup
-    .string()
-    .required('このフィールドは必須項目です')
-    .min(6, 'パスワードは6文字以上で入力してください')
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&].*$/,
-      'パスワードは英数字と記号を組み合わせて下さい'
-    ),
 });
 
 function EditProfile() {
@@ -73,15 +59,9 @@ function EditProfile() {
           error={'name' in errors}
           helperText={errors.name?.message}
           />
-          <StyledFormLabel>画像</StyledFormLabel>
-          
-        <Button
-          color="inherit"
-          variant="contained"
-          size="large"
-          sx={{width: "200px"}}
-        >参照</Button>
-
+          <StyledFormLabel>プロフィール画像</StyledFormLabel>
+        
+          <input type="file" />
         <Button
           color="primary"
           variant="contained"
