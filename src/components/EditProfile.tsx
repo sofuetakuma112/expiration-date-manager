@@ -1,40 +1,57 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Container, Stack, TextField, Avatar } from '@mui/material';
+import {
+  Button,
+  Container,
+  Stack,
+  TextField,
+  Avatar,
+  Input,
+} from '@mui/material';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { styled } from '@mui/system';
+
+//CSS
 const StyledFormLabel = styled('label')({
   margin: '0px',
 });
 
+const StyledErrorText = styled('p')({
+  color: 'red',
+});
+
 // フォームの型
 interface FormInput {
-  email: string;
   name: string;
-  password: string;
   condition: string;
   id: string;
+  file: string;
 }
 
 // バリデーションルール
 // バリデーションスキーマを構築する
 const schema = yup.object({
-  email: yup
-    .string()
-    .required('このフィールドは必須項目です')
-    .email('正しいメールアドレス入力してください'),
-  id: yup.string().required('このフィールドは必須項目です'),
   name: yup.string().required('このフィールドは必須項目です'),
-  password: yup
-    .string()
-    .required('このフィールドは必須項目です')
-    .min(6, 'パスワードは6文字以上で入力してください')
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&].*$/,
-      'パスワードは英数字と記号を組み合わせて下さい'
+  file: yup
+    .mixed()
+    .test(
+      'is-big-file',
+      'ファイルはjpegかpngで送信してください',
+      checkIfFilesAreCorrectType
     ),
 });
+
+//プロフィール画像のルール
+export function checkIfFilesAreCorrectType(file: File): boolean {
+  let valid = true;
+  if (file) {
+    if (!['image/jpeg', 'image/png'].includes(file.type)) {
+      valid = false;
+    }
+  }
+  return valid;
+}
 
 function EditProfile() {
   const {
@@ -72,15 +89,26 @@ function EditProfile() {
           {...register('name')}
           error={'name' in errors}
           helperText={errors.name?.message}
-          />
-          <StyledFormLabel>画像</StyledFormLabel>
-          
-        <Button
-          color="inherit"
-          variant="contained"
-          size="large"
-          sx={{width: "200px"}}
-        >参照</Button>
+        />
+        <StyledFormLabel>プロフィール画像</StyledFormLabel>
+        <label
+          style={{
+            lineHeight: 1.5,
+            border: '1px solid #ffffff',
+            borderRadius: '5px',
+            boxShadow: '2px 2px 5px 0px rgba(200, 200, 200, 1)',
+            fontFamily: 'Times New Roman',
+            padding: '10px 40px',
+            color: '#ffffff',
+            backgroundColor: '#19B4CE',
+            cursor: 'pointer',
+            width: "200px"
+          }}
+        >
+          <input type="file" style={{ display: 'none' }} {...register('file')} />ファイルを選択
+        </label>
+        {/* エラーメッセージ */}
+        <StyledErrorText>{errors.file?.message}</StyledErrorText>
 
         <Button
           color="primary"
